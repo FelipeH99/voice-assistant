@@ -57,3 +57,11 @@ Las pruebas del servidor usan un proveedor simulado: configuración ausente, ori
 ## Próximos pasos
 
 Validar voz real y reconexión en Chrome/Safari; medir latencia y documentar resultados; agregar pruebas de interfaz automatizadas; preparar autenticación antes de una demo pública.
+
+## Mejoras de uso
+
+- La interfaz comprueba si el servidor tiene agente y clave configurados antes de habilitar voz real; esto no comprueba la validez de las credenciales ni la cuota.
+- Podés cancelar mientras se conecta. Si el SDK termina de conectar después de la cancelación, la sesión tardía se cierra y sus eventos se descartan.
+- Podés descargar la transcripción como texto. Los mensajes de demo se etiquetan `[DEMO]`; el archivo se genera en el navegador y no se envía al servidor.
+- Limpiar borra el historial local, no la retención del proveedor. Los mensajes fallidos conservan el texto para reintentar.
+- Las pruebas del ciclo de sesión cubren cancelación, respuestas tardías, conexiones repetidas, desconexión y recuperación de errores sin usar micrófono ni créditos.
