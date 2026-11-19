@@ -1,6 +1,73 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Voz · Asistente personal</title></head><body><div id="app">
-<header><a href="/">voz<span> /</span></a><span>UN PROYECTO DE FELIPE HEREDIA</span></header>
-<main><section class="intro"><p class="eyebrow">ASISTENTE CONVERSACIONAL</p><h1>Una pregunta.<br><em>Una conversación.</em></h1><p>Explorá ideas, aclará conceptos y encontrá respuestas hablando con tu asistente.</p></section>
-<section class="workspace"><div class="controls"><label for="mode">Modo de conversación</label><select id="mode"><option value="demo">Demo guiada · sin audio ni API</option><option value="live">Conversación real · ElevenLabs</option></select><div class="orb" aria-hidden="true">✳</div><p id="status" role="status">Listo para explorar</p><p id="notice">Probá el recorrido con respuestas de ejemplo. No usa IA ni micrófono.</p><div class="actions"><button id="start">Probar demo</button><button id="stop" class="secondary" disabled>Finalizar</button><button id="mute" class="secondary" disabled aria-pressed="false">Silenciar micrófono</button></div><p id="error" role="alert"></p><p id="configuration" role="status"></p><button id="retry" class="secondary">Comprobar configuración</button></div>
-<div class="conversation"><div class="transcript-heading"><h2>Conversación</h2><div class="actions"><button id="download" class="secondary" disabled>Descargar texto</button><button id="clear" class="secondary">Limpiar</button></div></div><p class="hint">La transcripción aparece aquí durante la sesión.</p><ol id="messages" aria-live="polite" aria-label="Transcripción"></ol><form id="text-form"><label for="question">Tu pregunta</label><div class="input-row"><input id="question" maxlength="1000" placeholder="¿Qué podés hacer?" required disabled><button id="send" disabled>Enviar</button></div></form></div></section>
-<footer>La conversación real envía audio y mensajes a ElevenLabs y puede consumir créditos. El historial de esta interfaz se mantiene solo en memoria; la retención del proveedor depende de la configuración del agente.</footer></main></div><script type="module" src="/src/main.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Un asistente de preguntas y respuestas con voz, transcripción y una demo guiada para explorar sin micrófono.">
+  <title>Voz | Asistente personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="app-header">
+    <a href="/" class="wordmark" aria-label="Voz, inicio">voz<span aria-hidden="true">/</span></a>
+    <span class="byline">Un proyecto de Felipe Heredia</span>
+  </header>
+  <main>
+    <section class="intro">
+      <h1>Asistente conversacional</h1>
+      <p>Explorá ideas, aclará conceptos y encontrá respuestas hablando con tu asistente.</p>
+    </section>
+    <section class="workspace" aria-label="Estudio de conversación">
+      <div class="controls">
+        <div class="mode-field">
+          <label for="mode">Modo de conversación</label>
+          <select id="mode"><option value="demo">Demo guiada (sin audio ni API)</option><option value="live">Conversación real (ElevenLabs)</option></select>
+        </div>
+        <div class="session-status">
+          <svg class="mic-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>
+          <p id="status" role="status">Listo para explorar</p>
+          <p id="notice">Probá el recorrido con respuestas de ejemplo. No usa IA ni micrófono.</p>
+        </div>
+        <div class="session-actions">
+          <button id="start">Probar demo</button>
+          <div class="actions">
+            <button id="stop" class="secondary" disabled>Finalizar</button>
+            <button id="mute" class="secondary" disabled aria-pressed="false">Silenciar micrófono</button>
+          </div>
+        </div>
+        <p id="error" role="alert"></p>
+        <details id="voice-settings" class="configuration-panel">
+          <summary>Configuración de voz</summary>
+          <p id="configuration" role="status"></p>
+          <button id="retry" class="secondary">Comprobar configuración</button>
+        </details>
+      </div>
+      <div class="conversation">
+        <div class="transcript-heading">
+          <h2>Conversación</h2>
+          <div class="actions">
+            <button id="download" class="quiet" disabled>Descargar texto</button>
+            <button id="clear" class="quiet">Limpiar</button>
+          </div>
+        </div>
+        <div class="transcript-body">
+          <div class="empty-state"><h3>Una pregunta.<br>Una conversación.</h3><p class="hint">La transcripción aparece aquí durante la sesión.</p></div>
+          <ol id="messages" aria-live="polite" aria-label="Transcripción" tabindex="0"></ol>
+        </div>
+        <form id="text-form">
+          <label for="question">Tu pregunta</label>
+          <div class="input-row"><input id="question" maxlength="1000" placeholder="¿Qué podés hacer?" required disabled><button id="send" disabled>Enviar</button></div>
+        </form>
+      </div>
+    </section>
+    <footer><details><summary>Privacidad y uso de audio</summary><p>La conversación real envía audio y mensajes a ElevenLabs y puede consumir créditos. El historial de esta interfaz se mantiene solo en memoria; la retención del proveedor depende de la configuración del agente.</p></details></footer>
+    <noscript>Activá JavaScript para iniciar una conversación. No se ha activado el micrófono.</noscript>
+  </main>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -20,6 +20,7 @@ function update() {
   $('question').disabled = state !== 'connected';
   $('send').disabled = state !== 'connected';
   $('download').disabled = transcript.length === 0;
+  if ($('mode').value === 'live' && configured !== true) $('voice-settings').open = true;
   $('mute').setAttribute('aria-pressed', String(muted));
   $('mute').textContent = muted ? 'Activar micrófono' : 'Silenciar micrófono';
 }

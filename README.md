@@ -2,7 +2,9 @@
 
 Asistente de preguntas y respuestas con voz, transcripción y controles de sesión. Proyecto personal de Felipe Heredia, con JavaScript, ElevenLabs Agents y una API Node/Express.
 
-![Demo local del asistente](docs/demo.jpg)
+![Estudio de conversación](docs/hallmark-desktop.jpg)
+
+[Conversación activa](docs/demo.jpg) · [Vista móvil](docs/hallmark-mobile.jpg)
 
 ## Estado
 
@@ -65,3 +67,9 @@ Validar voz real y reconexión en Chrome/Safari; medir latencia y documentar res
 - Podés descargar la transcripción como texto. Los mensajes de demo se etiquetan `[DEMO]`; el archivo se genera en el navegador y no se envía al servidor.
 - Limpiar borra el historial local, no la retención del proveedor. Los mensajes fallidos conservan el texto para reintentar.
 - Las pruebas del ciclo de sesión cubren cancelación, respuestas tardías, conexiones repetidas, desconexión y recuperación de errores sin usar micrófono ni créditos.
+
+## Diseño
+
+Interfaz rediseñada con Hallmark, tema Ribbon en variante clara: controles de sesión separados de la transcripción, tipografía Instrument Sans/Figtree y un único acento verde azulado. Los tokens están en `src/tokens.css`, las reglas compartidas en `src/base.css` y la composición en `src/style.css`.
+
+Se conservan los controles y el ciclo de sesión. Configuración y privacidad usan desplegables nativos accesibles por teclado. Si elegís voz real sin configuración, sus instrucciones se abren automáticamente. Se revisaron las vistas de escritorio de 1280 × 800 y móvil de 390 px, además de la demo activa. El linter estático de Hallmark no reporta FAIL; su renderizador no estaba disponible y la revisión visual se hizo en Chrome.
